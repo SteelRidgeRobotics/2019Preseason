@@ -48,3 +48,14 @@ void Lift::Periodic() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
+void Lift::Up() {
+	talonLift->Set(1);
+}
+
+void Lift::Down() {
+	talonLift->Set (-1);
+}
+
+void Lift::Stop() {
+	talonLift->Set (0);
+}
