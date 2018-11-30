@@ -20,7 +20,6 @@ private:
 	
 	
 	
-	
 	std::shared_ptr<frc::Joystick> mainController;
 	std::shared_ptr<frc::JoystickButton> liftDown;
 	std::shared_ptr<frc::JoystickButton> liftUp;

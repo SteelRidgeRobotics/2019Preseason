@@ -40,7 +40,8 @@ public:
 void Up();
 void Down();
 void Stop();
-
+//void useLift(std::shared_ptr<Joystick>mainController);
+void controlLift(std::shared_ptr<Joystick>mainController);
 };
 
 #endif
