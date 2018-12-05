@@ -49,7 +49,7 @@ void Lift::Periodic() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void Lift::controlLift(std::shared_ptr<Joystick>mainController)
+void UpDown(std::shared_ptr<Joystick>mainController)
 {
 	double left_trigger = mainController->GetRawAxis(2);
 	double right_trigger = mainController->GetRawAxis(3);
@@ -57,22 +57,22 @@ void Lift::controlLift(std::shared_ptr<Joystick>mainController)
 	int right_bumper = mainController->GetRawButton(6);
 
 	if(left_trigger > 0.1 && right_trigger > 0.1) {
-		talonLift->Set(0.0);
+		Lift::talonLift->Set(0.0);
 	}
 	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger == 0 && left_trigger  > 0) {
-		talonLift->Set(-0.6*left_trigger);
+		Lift::talonLift->Set(-0.6*left_trigger);
 	}
 	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger  > 0 && left_trigger == 0){
-		talonLift->Set(0.6*right_trigger);
+		Lift::talonLift->Set(0.6*right_trigger);
 	}
 	else if (left_bumper == 0 && right_bumper == 0 && right_trigger == 0 && left_trigger  > 0) {
-		talonLift->Set(-1*left_trigger);
+		Ltift::alonLift->Set(-1*left_trigger);
 	}
 	else if (left_bumper == 0 && right_bumper == 0 && right_trigger  > 0 && left_trigger == 0){
-		talonLift->Set(right_trigger);
+		Lift::talonLift->Set(right_trigger);
 	}
 	else {
-		talonLift->Set (0);
+		Lift::talonLift->Set (0);
 	}
 
 }
