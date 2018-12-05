@@ -66,7 +66,7 @@ void UpDown(std::shared_ptr<Joystick>mainController)
 		Lift::talonLift->Set(0.6*right_trigger);
 	}
 	else if (left_bumper == 0 && right_bumper == 0 && right_trigger == 0 && left_trigger  > 0) {
-		Ltift::alonLift->Set(-1*left_trigger);
+		Lift::talonLift->Set(-1*left_trigger);
 	}
 	else if (left_bumper == 0 && right_bumper == 0 && right_trigger  > 0 && left_trigger == 0){
 		Lift::talonLift->Set(right_trigger);
