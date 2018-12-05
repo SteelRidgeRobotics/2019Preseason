@@ -59,36 +59,20 @@ void Lift::controlLift(std::shared_ptr<Joystick>mainController)
 	if(left_trigger > 0.1 && right_trigger > 0.1) {
 		talonLift->Set(0.0);
 	}
-	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger == 0) {
+	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger == 0 && left_trigger  > 0) {
 		talonLift->Set(-0.6*left_trigger);
 	}
-	else if ((left_bumper == 1 || right_bumper == 1) && left_trigger== 0){
+	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger  > 0 && left_trigger == 0){
 		talonLift->Set(0.6*right_trigger);
 	}
-	else if ((left_bumper == 0 || right_bumper == 0) && right_trigger == 0) {
+	else if (left_bumper == 0 && right_bumper == 0 && right_trigger == 0 && left_trigger  > 0) {
 		talonLift->Set(-1*left_trigger);
 	}
-	else if ((left_bumper == 0 || right_bumper == 0) && left_trigger== 0){
+	else if (left_bumper == 0 && right_bumper == 0 && right_trigger  > 0 && left_trigger == 0){
 		talonLift->Set(right_trigger);
+	}
+	else {
+		talonLift->Set (0);
 	}
 
 }
-
-
-
-void Lift::Stop() {
-	talonLift->Set (0);
-
-}
-
-
-/*void Lift::useLift(std::shared_ptr<Joystick>mainController)
-{
-		talonLift->Set(GetRawAxis(2));
-}
-*/
-
-
-
-
-
