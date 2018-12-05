@@ -47,7 +47,26 @@ void DriveTrain::Periodic() {
     // Put code here to be run every loop
 
 }
+void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
+	double left_y = -1*mainController->GetRawAxis(1);
+	double right_y = -1*mainController->GetRawAxis(5);
+	if(fabs(left_y) < 0.1) {
+		left_y = 0;
+	}
 
+	if(fabs(right_y) < 0.1) {
+		right_y = 0;
+	}
+
+	int l_bump = mainController->GetRawButton(5);
+
+	if(l_bump == 1) {
+		left_y = -0.6*mainController->GetRawAxis(1);
+		right_y = -0.6*mainController->GetRawAxis(5);
+	}
+
+
+}
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
