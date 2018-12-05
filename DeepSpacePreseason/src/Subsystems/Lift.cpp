@@ -51,18 +51,34 @@ void Lift::Periodic() {
 
 void Lift::controlLift(std::shared_ptr<Joystick>mainController)
 {
-		;
-}
-void Lift::Up() {
-	talonLift->Set(1);
+	double left_trigger = mainController->GetRawAxis(2);
+	double right_trigger = mainController->GetRawAxis(3);
+	int left_bumper = mainController->GetRawButton(5);
+	int right_bumper = mainController->GetRawButton(6);
+
+	if(left_trigger > 0.1 && right_trigger > 0.1) {
+		talonLift->Set(0.0);
+	}
+	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger == 0) {
+		talonLift->Set(-0.6*left_trigger);
+	}
+	else if ((left_bumper == 1 || right_bumper == 1) && left_trigger== 0){
+		talonLift->Set(0.6*right_trigger);
+	}
+	else if ((left_bumper == 0 || right_bumper == 0) && right_trigger == 0) {
+		talonLift->Set(-1*left_trigger);
+	}
+	else if ((left_bumper == 0 || right_bumper == 0) && left_trigger== 0){
+		talonLift->Set(right_trigger);
+	}
+
 }
 
-void Lift::Down() {
-	talonLift->Set (-1);
-}
+
 
 void Lift::Stop() {
 	talonLift->Set (0);
+
 }
 
 
